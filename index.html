@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#171615">
+  <meta name="description" content="RAYAN Fashion Egypt - متجر ملابس وطلب مباشر عبر واتساب">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="RAYAN">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+  <title>RAYAN Fashion Egypt</title>
+</head>
+<body>
+  <header class="topbar">
+    <button class="icon-button" id="menuButton" aria-label="القائمة">☰</button>
+    <button class="brand-button" id="homeButton" aria-label="الرئيسية">
+      <strong>RAYAN</strong><small>EGYPT • 2026</small>
+    </button>
+    <button class="language-button" id="languageButton" type="button">EN</button>
+  </header>
+
+  <main id="homeView">
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">NEW COLLECTION</span>
+        <h1 data-i18n="heroTitle">أناقة أبسط<br>بحضور أقوى</h1>
+        <p data-i18n="heroText">قطع مختارة بعناية، جاهزة للتوصيل داخل مصر.</p>
+        <button class="light-button" id="shopNowButton" data-i18n="shopNow">تسوّق الآن</button>
+      </div>
+      <img src="assets/hero-hoodie.png" alt="RAYAN hoodie" class="hero-product">
+    </section>
+
+    <section class="toolbar" id="productsSection">
+      <div>
+        <small data-i18n="collection">مجموعتنا</small>
+        <h2 data-i18n="allProducts">كل المنتجات</h2>
+      </div>
+      <label class="search-box">
+        <span aria-hidden="true">⌕</span>
+        <input id="searchInput" type="search" data-i18n-placeholder="search" placeholder="ابحث عن منتج...">
+      </label>
+    </section>
+
+    <nav class="categories" id="categoryFilters" aria-label="التصنيفات"></nav>
+    <section class="products" id="productsGrid" aria-live="polite"></section>
+
+    <section class="install-banner" id="installBanner">
+      <div><strong data-i18n="installTitle">ثبّت RAYAN على هاتفك</strong><p data-i18n="installText">تجربة أسرع وتعمل حتى عند ضعف الإنترنت.</p></div>
+      <button id="installButton" data-i18n="install">تثبيت</button>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="التنقل الرئيسي">
+    <button class="active" id="navHome">⌂<span data-i18n="home">الرئيسية</span></button>
+    <button id="navProducts">▦<span data-i18n="products">المنتجات</span></button>
+    <button id="navWhatsApp">◉<span data-i18n="contact">تواصل</span></button>
+    <button id="navAdmin">⚙<span data-i18n="admin">الإدارة</span></button>
+  </nav>
+
+  <aside class="side-menu" id="sideMenu" aria-hidden="true">
+    <div class="side-panel">
+      <div class="side-head"><strong>RAYAN</strong><button id="closeMenu" aria-label="إغلاق">✕</button></div>
+      <button id="sideHome" data-i18n="home">الرئيسية</button>
+      <button id="sideProducts" data-i18n="products">المنتجات</button>
+      <button id="sideInstall" data-i18n="install">تثبيت التطبيق</button>
+      <button id="sideAdmin" data-i18n="admin">الإدارة</button>
+    </div>
+  </aside>
+
+  <section class="modal" id="productModal" aria-hidden="true">
+    <article class="product-page">
+      <button class="floating-back" id="closeProduct" aria-label="رجوع">←</button>
+      <button class="floating-favorite" id="favoriteButton" aria-label="المفضلة">♡</button>
+      <div class="detail-image-wrap"><img id="detailImage" alt=""></div>
+      <div class="detail-content">
+        <span class="detail-category" id="detailCategory"></span>
+        <div class="detail-title-row"><h2 id="detailName"></h2><strong id="detailPrice"></strong></div>
+        <p id="detailDescription"></p>
+        <div class="spec-box">
+          <h3 data-i18n="specifications">المواصفات</h3>
+          <div><span data-i18n="material">الخامة</span><strong id="detailMaterial"></strong></div>
+          <div><span data-i18n="availability">التوفر</span><strong data-i18n="availableEgypt">متوفر داخل مصر</strong></div>
+        </div>
+        <div class="selector-block"><h3 data-i18n="chooseColor">اختر اللون</h3><div class="color-options" id="colorOptions"></div></div>
+        <div class="selector-block"><h3 data-i18n="chooseSize">اختر المقاس</h3><div class="size-options" id="sizeOptions"></div></div>
+        <div class="quantity-row"><h3 data-i18n="quantity">الكمية</h3><div class="quantity-control"><button id="minusQuantity">−</button><strong id="quantityValue">1</strong><button id="plusQuantity">＋</button></div></div>
+        <p class="selection-warning" id="selectionWarning" role="alert"></p>
+        <button class="whatsapp-order" id="whatsappOrder">◉ <span data-i18n="orderWhatsApp">اطلب الآن عبر واتساب</span></button>
+      </div>
+    </article>
+  </section>
+
+  <section class="modal centered" id="adminLoginModal" aria-hidden="true">
+    <form class="dialog-card" id="adminLoginForm">
+      <button class="dialog-close" id="closeAdminLogin" type="button">✕</button>
+      <div class="dialog-logo">R</div>
+      <h2 data-i18n="adminLogin">دخول الإدارة</h2>
+      <input id="adminPassword" type="password" inputmode="numeric" placeholder="••••" autocomplete="current-password" required>
+      <p class="form-error" id="loginError" role="alert"></p>
+      <button class="dark-button" type="submit" data-i18n="login">دخول</button>
+    </form>
+  </section>
+
+  <section class="admin-screen" id="adminScreen" aria-hidden="true">
+    <header class="admin-header">
+      <div><small data-i18n="adminPanel">لوحة إدارة RAYAN</small><h1 data-i18n="welcomeAdmin">مرحبًا، مدير المتجر</h1></div>
+      <button id="closeAdmin">✕</button>
+    </header>
+    <main class="admin-main">
+      <div class="admin-stats"><article><small data-i18n="totalProducts">إجمالي المنتجات</small><strong id="totalProductsCount">0</strong></article><article><small data-i18n="visibleProducts">المنتجات الظاهرة</small><strong id="visibleProductsCount">0</strong></article></div>
+      <section class="admin-settings">
+        <label><span data-i18n="whatsappNumber">رقم واتساب بصيغة دولية</span><input id="whatsappNumber" type="tel" placeholder="201000000000"></label>
+        <button id="saveSettings" class="dark-button" data-i18n="save">حفظ</button>
+      </section>
+      <div class="admin-toolbar"><h2 data-i18n="products">المنتجات</h2><button id="addProductButton" class="dark-button">＋ <span data-i18n="addProduct">إضافة منتج</span></button></div>
+      <section id="adminProductsList" class="admin-products"></section>
+      <div class="backup-actions"><button id="exportData" data-i18n="exportData">تصدير نسخة البيانات</button><label class="import-label"><span data-i18n="importData">استيراد البيانات</span><input id="importData" type="file" accept="application/json"></label></div>
+    </main>
+  </section>
+
+  <section class="modal centered" id="productFormModal" aria-hidden="true">
+    <form class="dialog-card product-form" id="productForm">
+      <button class="dialog-close" id="closeProductForm" type="button">✕</button>
+      <h2 id="productFormTitle">إضافة منتج</h2>
+      <input id="editProductId" type="hidden">
+      <label>الاسم بالعربية<input id="productNameAr" required></label>
+      <label>Name in English<input id="productNameEn" required dir="ltr"></label>
+      <label>التصنيف<select id="productCategory"><option value="hoodies">هوديز</option><option value="tshirts">تيشيرتات</option><option value="pants">بناطيل</option><option value="jackets">جاكيتات</option></select></label>
+      <label>السعر بالجنيه<input id="productPrice" type="number" min="0" required></label>
+      <label>الوصف بالعربية<textarea id="productDescriptionAr" rows="2" required></textarea></label>
+      <label>Description in English<textarea id="productDescriptionEn" rows="2" required dir="ltr"></textarea></label>
+      <label>الخامة بالعربية<input id="productMaterialAr" required></label>
+      <label>Material in English<input id="productMaterialEn" required dir="ltr"></label>
+      <label>الألوان: الاسم|الكود، وافصل بفاصلة<input id="productColors" placeholder="أسود|#111111, بيج|#d8c9b4" required></label>
+      <label>المقاسات وافصل بفاصلة<input id="productSizes" placeholder="S,M,L,XL,XXL" required></label>
+      <label>صورة المنتج<input id="productImage" type="file" accept="image/*"></label>
+      <label class="check-label"><input id="productVisible" type="checkbox" checked> إظهار المنتج للعملاء</label>
+      <p class="form-error" id="productFormError" role="alert"></p>
+      <button class="dark-button" type="submit" data-i18n="save">حفظ</button>
+    </form>
+  </section>
+
+  <div class="toast" id="toast" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
